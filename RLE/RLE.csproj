@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<LangVersion>8.0</LangVersion>
+		<NullableContextOptions>enable</NullableContextOptions>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+	  <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+	</ItemGroup>
+
+</Project>

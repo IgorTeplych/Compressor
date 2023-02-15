@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compressor", "Compressor\Compressor.csproj", "{0842583A-AB34-4BB4-8236-4B10402BECDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{22ED972D-D4DD-4096-887B-15D56EBF304B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RLE", "RLE\RLE.csproj", "{D0B00F45-51F6-4E30-927B-48C98D556F7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F3588BD-F007-44B6-8572-1728D08E98A5}
+	EndGlobalSection
+EndGlobal
