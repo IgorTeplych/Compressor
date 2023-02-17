@@ -10,6 +10,11 @@ namespace Comp
 {
     public class Rle
     {
+        Action<int, int, int> progress;
+        public Rle(Action<int, int, int> progress)
+        {
+            this.progress = progress;
+        }
         public void Encode(byte[] bytes, string fullPath)
         {
             IArray<byte> encode = new FactorArray<byte>();
@@ -52,6 +57,7 @@ namespace Comp
 
                 WriteToFile(encode, countBytes, fullPath);
                 totalLength += countBytes;
+                progress.Invoke(count, totalLength, bytes.Length);
             }
         }
         public void Decode(byte[] encode, string fullPath)

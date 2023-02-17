@@ -21,7 +21,7 @@ namespace RLE.View
     /// </summary>
     public partial class Miniature : UserControl
     {
-        MiniatureViewModel miniatureViewModel; 
+        public MiniatureViewModel miniatureViewModel { get; private set; }
         public Miniature()
         {
             InitializeComponent();

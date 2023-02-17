@@ -5,13 +5,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RLE.View"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="250">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="{Binding InfoText}"/>
-        <Button Grid.Row="1" Command="{Binding ButtonCommand}" Width="75" Height="25"/>
-    </Grid>
+             d:DesignHeight="100" d:DesignWidth="230">
+    <DockPanel>
+        <GroupBox>
+            <GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="RLE"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="{Binding NameProgress}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ProgressBar  Grid.Row="0" Height="15" 
+                                     Value="{Binding Progress}" 
+                                     Orientation="Horizontal"/>
+                    </Grid>
+                </GroupBox>
+
+
+                <GroupBox Grid.Column="1"  Header="{Binding NameRatio}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ProgressBar Grid.Row="0" Width="15" Height="55"
+                                     Value="{Binding Rate}" 
+                                     Orientation="Vertical"/>
+                        <TextBlock Grid.Row="1" 
+                           Text="{Binding InfoText}" 
+                           HorizontalAlignment="Right"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
 </UserControl>

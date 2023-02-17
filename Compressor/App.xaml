@@ -4,13 +4,20 @@
              xmlns:local="clr-namespace:Compressor" 
              StartupUri="View/MainWindow.xaml" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ls="clr-namespace:Compressor.Resources"
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
-  <Application.Resources>
-    <ResourceDictionary>
-      <vm:ViewModelLocator x:Key="Locator" 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ls:Lang x:Key="UIStrings"/>
+            
+            <vm:ViewModelLocator x:Key="Locator" 
                            d:IsDataSource="True" 
                            xmlns:vm="clr-namespace:Compressor.ViewModel" />
-    </ResourceDictionary>
-  </Application.Resources>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionaries/Style/UIStile.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

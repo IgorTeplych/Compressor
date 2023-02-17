@@ -1,8 +1,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Interfaces;
+using Microsoft.Win32;
 using RLE;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Compressor.ViewModel
 {
@@ -11,26 +14,54 @@ namespace Compressor.ViewModel
         public MainViewModel()
         {
             CommandsSet = new ObservableCollection<IShow>();
-            AddCommand = new RelayCommand(() => AddMethod());
+            OpenFilesCommand = new RelayCommand(() => OpenFilesMethod());
+            OpenDirectoryCommand = new RelayCommand(() => OpenDirectoryMethod());
         }
-
-        public RelayCommand AddCommand { get; set; }
-        public ObservableCollection<IShow> CommandsSet { get; set; }
-        void AddMethod()
+        string filesListText;
+        public string FilesListText
         {
-            IShow algoritm = new AlgoritmRLE();
-            CommandsSet.Add(algoritm);
+            get { return filesListText; }
+            set
+            {
+                filesListText = value;
+                RaisePropertyChanged(() => FilesListText);
+            }
+        }
+        string directoryText;
+        public string DirectoryText
+        {
+            get { return directoryText; }
+            set
+            {
+                directoryText = value;
+                RaisePropertyChanged(() => DirectoryText);
+            }
+        }
+        public RelayCommand OpenFilesCommand { get; set; }
+        public RelayCommand OpenDirectoryCommand { get; set; }
+        public ObservableCollection<IShow> CommandsSet { get; set; }
 
-            string path = @"N:\tst.docx";
-            string outputDir = @"N:\";
-
-            System.IO.FileInfo fi = new System.IO.FileInfo(path);
-            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(outputDir);
-
-
-           ((PathFiles)algoritm).Path(fi, di);
-
-            ((ICommand)algoritm).Execute();
+        string[] selectFiles;
+        void OpenFilesMethod()
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.InitialDirectory = @"C:\";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectFiles = openFileDialog.FileNames;
+            }
+            FilesListText = new FileInfo(selectFiles[0]).DirectoryName;
+        }
+        DirectoryInfo selectDirectory;
+        void OpenDirectoryMethod()
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                selectDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            }
+            DirectoryText = selectDirectory.FullName;
         }
     }
 }

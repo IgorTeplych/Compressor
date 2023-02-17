@@ -3,40 +3,79 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Compressor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="300" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
-
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Command="{Binding AddCommand}"/>
-        </Grid>
+            <GroupBox Header="{Binding Source={StaticResource UIStrings}, Path=Options}" Style="{StaticResource GroupBoxStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="2" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Style="{StaticResource OpenDialogButton}" ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectFiles}"
+                            Command="{Binding OpenFilesCommand}">
+                            <Image Source="{Binding Source={StaticResource Folder}}"/>
+                        </Button>
+                        <Grid  Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=SourceFiles}"/>
+                            <TextBlock  Grid.Row="1" VerticalAlignment="Bottom" Text="{Binding FilesListText}"/>
+                        </Grid>
+                        <Button Grid.Row="1" Style="{StaticResource OpenDialogButton}" ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectDir}"
+                                Command="{Binding OpenDirectoryCommand}">
+                            <Image Source="{Binding Source={StaticResource Folder}}"/>
+                        </Button>
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=PathDirectory}"/>
+                            <TextBlock Grid.Row="1" VerticalAlignment="Bottom" Text="{Binding DirectoryText}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </GroupBox>
+        </Grid>
         <Grid Grid.Column="1">
-            <ListBox x:Name="Commands" Grid.Column="0" 
+            <GroupBox Style="{StaticResource GroupBoxStyle}" Header="{Binding Source={StaticResource UIStrings}, Path=Commands}">
+                <ListBox x:Name="Commands" Grid.Column="0" Margin="2"
                  ItemsSource="{Binding CommandsSet}"
                  SelectedIndex="{Binding SelectCommand}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Height="100">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <UserControl Grid.Column="0" Content="{Binding Miniature}"/>
-                            </Grid>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Height="auto">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"/>
+                                    </Grid.ColumnDefinitions>
+                                    <UserControl Grid.Column="0" Content="{Binding Miniature}"/>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
         </Grid>
     </Grid>
 </Window>
