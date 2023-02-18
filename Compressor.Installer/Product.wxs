@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?define ProductCode = "{D4DB17F9-CF5D-4C2F-9F1B-2C48EDA6ACC5}"?>
+	<?define AppVersion = "!(bind.fileVersion.filFF6B8AACD9C4A3F73013F582685B35E3)"?>
+
+	<Product Id="$(var.ProductCode)"
+			 Name="!(loc.ProductName)"
+			 Language="1033"
+			 Version="$(var.AppVersion)"
+			 Manufacturer="!(loc.Company)"
+			 UpgradeCode="45CAFB24-EBB0-4163-B025-00747BC3A0C1">
+
+		<Package InstallerVersion="200"
+				 Compressed="yes"
+				 InstallScope="perMachine"
+				 Manufacturer="!(loc.Company)"
+				 Description="!(loc.Description)"/>
+
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)"/>
+		<MediaTemplate EmbedCab="yes"/>
+
+		<UIRef Id ="WixUI_Minimal"/>
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.Compressor.ProjectDir)\Files\License.rtf"/>
+		
+		<Feature Id="ProductFeature" Title="!(loc.ProductName)" Level="1">
+			<ComponentGroupRef Id="AutoGenerateProductComponents" />
+			<ComponentRef Id="ApplicationShortcutDesktop" />
+		</Feature>
+		
+	</Product>
+</Wix>

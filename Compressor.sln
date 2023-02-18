@@ -5,28 +5,52 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compressor", "Compressor\Compressor.csproj", "{0842583A-AB34-4BB4-8236-4B10402BECDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{22ED972D-D4DD-4096-887B-15D56EBF304B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{22ED972D-D4DD-4096-887B-15D56EBF304B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RLE", "RLE\RLE.csproj", "{D0B00F45-51F6-4E30-927B-48C98D556F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RLE", "RLE\RLE.csproj", "{D0B00F45-51F6-4E30-927B-48C98D556F7F}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Compressor.Installer", "Compressor.Installer\Compressor.Installer.wixproj", "{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Debug|x86.Build.0 = Debug|Any CPU
 		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|x86.ActiveCfg = Release|Any CPU
+		{0842583A-AB34-4BB4-8236-4B10402BECDF}.Release|x86.Build.0 = Release|Any CPU
 		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Debug|x86.Build.0 = Debug|Any CPU
 		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|x86.ActiveCfg = Release|Any CPU
+		{22ED972D-D4DD-4096-887B-15D56EBF304B}.Release|x86.Build.0 = Release|Any CPU
 		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Debug|x86.Build.0 = Debug|Any CPU
 		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0B00F45-51F6-4E30-927B-48C98D556F7F}.Release|x86.Build.0 = Release|Any CPU
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Debug|Any CPU.Build.0 = Debug|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Debug|x86.ActiveCfg = Debug|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Debug|x86.Build.0 = Debug|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|Any CPU.ActiveCfg = Release|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|Any CPU.Build.0 = Release|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|x86.ActiveCfg = Release|x86
+		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

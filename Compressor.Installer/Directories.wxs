@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			
+			 <!--Shortcut Desktop-->
+      <Directory Id="DesktopFolder">
+        <Component Id="ApplicationShortcutDesktop" Guid="{EC096E09-DB51-436F-A685-6A4263C08805}">
+          <Shortcut Id="ApplicationDesktopShortcut"
+                    Name="!(loc.ProductName)"
+                    Description="!(loc.Description)"
+                    Target="[INSTALLFOLDER]Compressor.exe"
+                    WorkingDirectory="INSTALLFOLDER"/>
+          <RemoveFolder Id="DesktopFolder" On="uninstall"/>
+          <RegistryValue Root="HKCU" Key="SOFTWARE\!(loc.Company)\!(loc.ProductName)" Name="ShortcutDesktop" Type="integer" Value="1" KeyPath="yes"/>
+        </Component>
+      </Directory>
+				
+		<!--Program files folder-->
+		<Directory Id="ProgramFilesFolder">
+			<Directory Id="MAININSTALLFOLDER" Name="!(loc.MainFolder)">
+				<Directory Id="INSTALLFOLDER" Name="!(loc.ProductNameFolder)"/>
+			</Directory>
+		</Directory>
+
+		</Directory>
+	</Fragment>
+</Wix>

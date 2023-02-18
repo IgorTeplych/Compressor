@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>0b72e6ff-a23f-4d4d-b1b5-bed1e6a4409c</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>ArchAlgo-$(Configuration)</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Components.wxs" />
+    <Compile Include="ComponentsGeneration.wxs" />
+    <Compile Include="Directories.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Compressor\Compressor.csproj">
+      <Name>Compressor</Name>
+      <Project>{0842583a-ab34-4bb4-8236-4b10402becdf}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 build tools must be installed to build this project. To download the WiX Toolset, see https://wixtoolset.org/releases/v3.11/stable" />
+  </Target>
+	<PropertyGroup>
+		<DefineConstants>BuildVersion=%(AssemblyVersion.Version);BasePath=..\Compressor\bin\Release</DefineConstants>
+	</PropertyGroup>
+  <Target Name="BeforeBuild">
+    <HeatDirectory OutputFile="ComponentsGeneration.wxs" 
+				   DirectoryRefId="INSTALLFOLDER" 
+				   ComponentGroupName="AutoGenerateProductComponents" 
+				   SuppressCom="true" 
+				   Directory="..\Compressor\bin\Release" 
+				   SuppressFragments="true" 
+				   SuppressRegistry="true" 
+				   SuppressRootDirectory="true" 
+				   AutoGenerateGuids="false" 
+				   GenerateGuidsNow="true" 
+				   ToolPath="$(WixToolPath)" 
+				   PreprocessorVariable="var.BasePath" 
+				   RunAsSeparateProcess="true" />
+  </Target>
+	<Target Name="AfterBuild">
+		<!--Get version-->
+		<GetAssemblyIdentity AssemblyFiles="..\Compressor\bin\Release\Compressor.exe">
+			<Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
+		</GetAssemblyIdentity>
+		<Exec Command="if not exist Installs mkdir Installs" />
+		<Exec Command="move bin\$(Configuration)\en-us\$(OutputName).msi Installs\ArchAlgo-v.%(AssemblyVersion.Version)-$(Configuration).msi" />
+	</Target>
+</Project>
