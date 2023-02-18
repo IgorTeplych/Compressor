@@ -1,3 +1,4 @@
+using Compressor.ViewModel.Enums;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Interfaces;
@@ -16,6 +17,8 @@ namespace Compressor.ViewModel
             CommandsSet = new ObservableCollection<IShow>();
             OpenFilesCommand = new RelayCommand(() => OpenFilesMethod());
             OpenDirectoryCommand = new RelayCommand(() => OpenDirectoryMethod());
+            FilesListText = "   ...";
+            DirectoryText = "   ...";
         }
         string filesListText;
         public string FilesListText
@@ -37,6 +40,18 @@ namespace Compressor.ViewModel
                 RaisePropertyChanged(() => DirectoryText);
             }
         }
+
+        TypeArhAlgoEnum selectedArhAlgo;
+        public TypeArhAlgoEnum SelectedArhAlgo
+        {
+            get { return selectedArhAlgo; }
+            set
+            {
+                selectedArhAlgo = value;
+                RaisePropertyChanged(() => SelectedArhAlgo);
+            }
+        }
+
         public RelayCommand OpenFilesCommand { get; set; }
         public RelayCommand OpenDirectoryCommand { get; set; }
         public ObservableCollection<IShow> CommandsSet { get; set; }
@@ -50,8 +65,8 @@ namespace Compressor.ViewModel
             if (openFileDialog.ShowDialog() == true)
             {
                 selectFiles = openFileDialog.FileNames;
+                FilesListText = new FileInfo(selectFiles[0]).DirectoryName;
             }
-            FilesListText = new FileInfo(selectFiles[0]).DirectoryName;
         }
         DirectoryInfo selectDirectory;
         void OpenDirectoryMethod()
@@ -60,8 +75,8 @@ namespace Compressor.ViewModel
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 selectDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+                DirectoryText = selectDirectory.FullName;
             }
-            DirectoryText = selectDirectory.FullName;
         }
     }
 }

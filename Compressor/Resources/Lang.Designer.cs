@@ -29,8 +29,7 @@ namespace Compressor.Resources {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang() {
-        }
+
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
@@ -75,6 +74,15 @@ namespace Compressor.Resources {
         public static string CompRatio {
             get {
                 return ResourceManager.GetString("CompRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Compression algorithm.
+        /// </summary>
+        public static string CompressionAlgorithm {
+            get {
+                return ResourceManager.GetString("CompressionAlgorithm", resourceCulture);
             }
         }
         

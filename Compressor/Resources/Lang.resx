@@ -123,6 +123,9 @@
   <data name="CompRatio" xml:space="preserve">
     <value>Ratio</value>
   </data>
+  <data name="CompressionAlgorithm" xml:space="preserve">
+    <value>Compression algorithm</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>

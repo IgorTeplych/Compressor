@@ -123,6 +123,9 @@
   <data name="CompRatio" xml:space="preserve">
     <value>Сжатие</value>
   </data>
+  <data name="CompressionAlgorithm" xml:space="preserve">
+    <value>Алгоритм сжатия</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Параметры</value>
   </data>
