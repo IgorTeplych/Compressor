@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using RLE;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Compressor.ViewModel
@@ -17,6 +18,7 @@ namespace Compressor.ViewModel
             CommandsSet = new ObservableCollection<IShow>();
             OpenFilesCommand = new RelayCommand(() => OpenFilesMethod());
             OpenDirectoryCommand = new RelayCommand(() => OpenDirectoryMethod());
+            StartCommand = new RelayCommand(() => StartMethod());
             FilesListText = "   ...";
             DirectoryText = "   ...";
         }
@@ -52,6 +54,18 @@ namespace Compressor.ViewModel
             }
         }
 
+        OperationsEnum selectedAction;
+        public OperationsEnum SelectedAction
+        {
+            get { return selectedAction; }
+            set
+            {
+                selectedAction = value;
+                RaisePropertyChanged(() => SelectedAction);
+            }
+        }
+
+        public RelayCommand StartCommand { get; set; }
         public RelayCommand OpenFilesCommand { get; set; }
         public RelayCommand OpenDirectoryCommand { get; set; }
         public ObservableCollection<IShow> CommandsSet { get; set; }
@@ -66,6 +80,15 @@ namespace Compressor.ViewModel
             {
                 selectFiles = openFileDialog.FileNames;
                 FilesListText = new FileInfo(selectFiles[0]).DirectoryName;
+                foreach (var item in selectFiles)
+                {
+                    IShow algo = null;
+                    if (SelectedArhAlgo == TypeArhAlgoEnum.rle)
+                        algo = new AlgoritmRLE();
+
+                    ((IPath)algo).Path(new FileInfo(item));
+                    CommandsSet.Add(algo);
+                }
             }
         }
         DirectoryInfo selectDirectory;
@@ -76,6 +99,18 @@ namespace Compressor.ViewModel
             {
                 selectDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                 DirectoryText = selectDirectory.FullName;
+
+                foreach (var item in CommandsSet.ToList())
+                {
+                    ((IPath)item).Path(selectDirectory);
+                }
+            }
+        }
+        void StartMethod()
+        {
+            foreach(var item in CommandsSet)
+            {
+                ((ICommand)item).Execute();
             }
         }
     }

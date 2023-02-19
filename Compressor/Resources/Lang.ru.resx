@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
   <data name="Commands" xml:space="preserve">
     <value>Команды</value>
   </data>
   <data name="CompRatio" xml:space="preserve">
+    <value>Сжатие</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
     <value>Сжатие</value>
   </data>
   <data name="CompressionAlgorithm" xml:space="preserve">
@@ -140,5 +146,11 @@
   </data>
   <data name="SourceFiles" xml:space="preserve">
     <value>Источник файлов:</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Пуск</value>
+  </data>
+  <data name="Unpacking" xml:space="preserve">
+    <value>Распаковка</value>
   </data>
 </root>

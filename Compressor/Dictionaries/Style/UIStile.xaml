@@ -27,12 +27,13 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="120"/>
         <Setter Property="Height" Value="23"/>
         <Setter Property="Margin" Value="0,4,0,4"/>
     </Style>
 
     <BitmapImage x:Key="Folder" UriSource="/Compressor;component/Images/Folder.ico"/>
+    <BitmapImage x:Key="Play" UriSource="/Compressor;component/Images/Play.png"/>
     <BitmapImage x:Key="ArhiveSmall" UriSource="/Compressor;component/Images/ArhiveSmall.png"/>
 
     <!-- Combo box binding to Enums -->
@@ -43,6 +44,14 @@
                         x:Key="ArhAlgo">
         <ObjectDataProvider.MethodParameters>
             <x:Type TypeName="enums:TypeArhAlgoEnum"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}"
+                        x:Key="Actions">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="enums:OperationsEnum"/>
         </ObjectDataProvider.MethodParameters>
     </ObjectDataProvider>
 

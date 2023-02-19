@@ -4,23 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="" Height="300" Width="600"
+        Title="" Height="300" Width="500"
         Icon="{Binding Source={StaticResource ArhiveSmall}}"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        WindowStartupLocation ="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="205"/>
         </Grid.ColumnDefinitions>
         <Grid>
             <GroupBox Header="{Binding Source={StaticResource UIStrings}, Path=Options}" Style="{StaticResource GroupBoxStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=Action}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ComboBoxStyle}"
+                                  ItemsSource="{Binding Source={StaticResource Actions}}"
+                                  SelectedItem="{Binding SelectedAction, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="5" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -77,7 +95,22 @@
             </GroupBox>
         </Grid>
         <Grid Grid.Column="1">
-            <GroupBox Style="{StaticResource GroupBoxStyle}" Header="{Binding Source={StaticResource UIStrings}, Path=Commands}">
+            <GroupBox Style="{StaticResource GroupBoxStyle}">
+                <GroupBox.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=Commands}" VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Style="{StaticResource OpenDialogButton}"
+                                ToolTip="{Binding Source={StaticResource UIStrings}, Path=Start}"
+                                Command="{Binding StartCommand}">
+                            <Image Source="{Binding Source={StaticResource Play}}"/>
+                        </Button>
+                    </Grid>
+                    
+                </GroupBox.Header>
                 <ListBox x:Name="Commands" Grid.Column="0" Margin="2"
                  ItemsSource="{Binding CommandsSet}"
                  SelectedIndex="{Binding SelectCommand}">
@@ -86,7 +119,7 @@
                             <StackPanel Height="auto">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="150"/>
                                     </Grid.ColumnDefinitions>
                                     <UserControl Grid.Column="0" Content="{Binding Miniature}"/>
                                 </Grid>

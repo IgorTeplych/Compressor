@@ -13,7 +13,7 @@ namespace RLE.ViewModel
     {
         public MiniatureViewModel()
         {
-            ButtonCommand = new RelayCommand(()=> ButtonMethod());
+            ButtonCommand = new RelayCommand(() => ButtonMethod());
 
             NameProgress = "Прогресс";
             NameRatio = "Сжатие";
@@ -24,14 +24,24 @@ namespace RLE.ViewModel
         public string NameRatio { get; set; }
         public string NameProgress { get; set; }
 
-        string infoText;
-        public string InfoText 
+        string progressValueText;
+        public string ProgressValueText
         {
-            get { return infoText; }
+            get { return progressValueText; }
             set
             {
-                infoText = value;
-                RaisePropertyChanged(() => InfoText);
+                progressValueText = value;
+                RaisePropertyChanged(() => ProgressValueText);
+            }
+        }
+        string rateValueText;
+        public string RateValueText
+        {
+            get { return rateValueText; }
+            set
+            {
+                rateValueText = value;
+                RaisePropertyChanged(() => RateValueText);
             }
         }
         int rate;
@@ -56,7 +66,7 @@ namespace RLE.ViewModel
         }
         void ButtonMethod()
         {
-            InfoText = "Button was push";
+            ProgressValueText = "Button was push";
         }
     }
 }

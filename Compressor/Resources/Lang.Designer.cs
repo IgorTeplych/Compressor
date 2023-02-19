@@ -29,7 +29,8 @@ namespace Compressor.Resources {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-
+        internal Lang() {
+        }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
@@ -60,6 +61,15 @@ namespace Compressor.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Action.
+        /// </summary>
+        public static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Commands.
         /// </summary>
         public static string Commands {
@@ -74,6 +84,15 @@ namespace Compressor.Resources {
         public static string CompRatio {
             get {
                 return ResourceManager.GetString("CompRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Compression.
+        /// </summary>
+        public static string Compression {
+            get {
+                return ResourceManager.GetString("Compression", resourceCulture);
             }
         }
         
@@ -128,6 +147,24 @@ namespace Compressor.Resources {
         public static string SourceFiles {
             get {
                 return ResourceManager.GetString("SourceFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unpacking.
+        /// </summary>
+        public static string Unpacking {
+            get {
+                return ResourceManager.GetString("Unpacking", resourceCulture);
             }
         }
     }

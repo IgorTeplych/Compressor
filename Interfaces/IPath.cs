@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface PathFiles
+    public interface IPath
     {
-        void Path(FileInfo input, DirectoryInfo output);
+        void Path(FileInfo input);
+        void Path(DirectoryInfo output);
     }
 }

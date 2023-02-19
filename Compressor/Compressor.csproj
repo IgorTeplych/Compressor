@@ -85,7 +85,9 @@
       <DependentUpon>Lang.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="ViewModel\Enums\OperationsEnum.cs" />
     <Compile Include="ViewModel\Enums\TypeArhAlgoEnum.cs" />
+    <Compile Include="ViewModel\LocDescriptionAttribute.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Dictionaries\Style\UIStile.xaml">
@@ -164,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ArhiveBig.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Play.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
