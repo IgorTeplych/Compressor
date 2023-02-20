@@ -16,6 +16,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="RLE"/>
+                    <TextBlock Text="{Binding ExtensionText}" Grid.Column="1" FontStyle="Oblique"/>
                 </Grid>
             </GroupBox.Header>
 

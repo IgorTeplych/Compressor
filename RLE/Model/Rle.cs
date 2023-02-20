@@ -90,6 +90,7 @@ namespace Comp
                     }
                 }
                 WriteToFile(decode, decodeLength, fullPath);
+                progress.Invoke(totalCount, 0, encode.Length);
             }
         }
         void WriteToFile(IArray<byte> bytes, int len, string path)

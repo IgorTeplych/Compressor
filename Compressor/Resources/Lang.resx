@@ -120,6 +120,9 @@
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="Commands" xml:space="preserve">
     <value>Commands</value>
   </data>

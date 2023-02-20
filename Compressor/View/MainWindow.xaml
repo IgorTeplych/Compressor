@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="" Height="300" Width="500"
+        Title="" Height="400" Width="470"
         Icon="{Binding Source={StaticResource ArhiveSmall}}"
         ResizeMode="NoResize"
         WindowStartupLocation ="CenterScreen">
@@ -21,7 +21,7 @@
                         <RowDefinition />
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="5">
+                    <Grid Grid.Row="0" Margin="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -38,7 +38,7 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.Row="1" Margin="5" VerticalAlignment="Top">
+                    <Grid Grid.Row="1" Margin="1" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -101,12 +101,18 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=Commands}" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" Style="{StaticResource OpenDialogButton}"
                                 ToolTip="{Binding Source={StaticResource UIStrings}, Path=Start}"
                                 Command="{Binding StartCommand}">
                             <Image Source="{Binding Source={StaticResource Play}}"/>
+                        </Button>
+                        <Button Grid.Column="2" Style="{StaticResource OpenDialogButton}"
+                                ToolTip="{Binding Source={StaticResource UIStrings}, Path=Clear}"
+                                Command="{Binding ClearCommand}">
+                            <Image Source="{Binding Source={StaticResource Clear}}"/>
                         </Button>
                     </Grid>
                     

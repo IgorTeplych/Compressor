@@ -19,6 +19,7 @@ namespace Compressor.ViewModel
             OpenFilesCommand = new RelayCommand(() => OpenFilesMethod());
             OpenDirectoryCommand = new RelayCommand(() => OpenDirectoryMethod());
             StartCommand = new RelayCommand(() => StartMethod());
+            ClearCommand = new RelayCommand(() => ClearMethod());
             FilesListText = "   ...";
             DirectoryText = "   ...";
         }
@@ -68,6 +69,7 @@ namespace Compressor.ViewModel
         public RelayCommand StartCommand { get; set; }
         public RelayCommand OpenFilesCommand { get; set; }
         public RelayCommand OpenDirectoryCommand { get; set; }
+        public RelayCommand ClearCommand { get; set; }
         public ObservableCollection<IShow> CommandsSet { get; set; }
 
         string[] selectFiles;
@@ -99,18 +101,28 @@ namespace Compressor.ViewModel
             {
                 selectDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                 DirectoryText = selectDirectory.FullName;
-
-                foreach (var item in CommandsSet.ToList())
-                {
-                    ((IPath)item).Path(selectDirectory);
-                }
             }
-        }
+        } 
         void StartMethod()
         {
-            foreach(var item in CommandsSet)
+            foreach (var item in CommandsSet)
             {
+                if (SelectedAction == OperationsEnum.compression)
+                    ((IOperation)item).Operation(Interfaces.Enums.OperationEnum.Encode);
+
+                if(SelectedAction == OperationsEnum.unpacking)
+                    ((IOperation)item).Operation(Interfaces.Enums.OperationEnum.Decode);
+
+                ((IPath)item).Path(selectDirectory);
                 ((ICommand)item).Execute();
+            }
+        }
+        void ClearMethod()
+        {
+            var toClear = CommandsSet.Where((p => ((IState)p).GetState() != Interfaces.Enums.StateEnum.IsRun)).ToList();
+            foreach(var item in toClear)
+            {
+                CommandsSet.Remove(item);
             }
         }
     }

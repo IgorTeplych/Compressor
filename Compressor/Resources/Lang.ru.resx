@@ -120,6 +120,9 @@
   <data name="Action" xml:space="preserve">
     <value>Действие</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Очистка </value>
+  </data>
   <data name="Commands" xml:space="preserve">
     <value>Команды</value>
   </data>
