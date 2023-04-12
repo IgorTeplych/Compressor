@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Huff.View.Miniature"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huff.View"
+             Width="205"
+             Height="100"
+             mc:Ignorable="d">
+    <Grid>
+        <GroupBox BorderBrush="ForestGreen">
+            <GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding HeaderText}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding ExtensionText}" FontStyle="Oblique"/>
+                </Grid>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="1"
+                         Text="{Binding TextInfo}"
+                         IsReadOnly="True"
+                         TextWrapping="WrapWithOverflow"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible">
+                </TextBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

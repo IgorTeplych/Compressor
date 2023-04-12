@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace RLE
 {
@@ -66,19 +67,33 @@ namespace RLE
 
         void Decode()
         {
-            string outputFile = output.FullName;
-            string name = input.Name;
-            byte[] bites = File.ReadAllBytes(input.FullName);
-            Rle rle = new Rle(Progress);
-            rle.Decode(bites, output.FullName + name.Replace(".crle", ""));
+            try
+            {
+                string outputFile = output.FullName;
+                string name = input.Name;
+                byte[] bytes = File.ReadAllBytes(input.FullName);
+                Rle rle = new Rle(CalcProgressAndRatio);
+                rle.Decode(bytes, output.FullName + name.Replace(".crle", ""));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         void Encode()
         {
-            string outputFile = output.FullName;
-            string name = input.Name;
-            byte[] bites = File.ReadAllBytes(input.FullName);
-            Rle rle = new Rle(Progress);
-            rle.Encode(bites, output.FullName + name + ".crle");
+            try
+            {
+                string outputFile = output.FullName;
+                string name = input.Name;
+                byte[] bytes = File.ReadAllBytes(input.FullName);
+                Rle rle = new Rle(CalcProgressAndRatio);
+                rle.Encode(bytes, output.FullName + @"/" + name + ".crle");
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void Path(FileInfo input)
         {
@@ -89,20 +104,18 @@ namespace RLE
         {
             this.output = output;
         }
-        void Progress(int count, int lenght, int totalLength)
+
+        Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
+        void CalcProgressAndRatio(int progress, int ratio)
         {
-            if (count == 0)
-                return;
-            if (totalLength == 0)
-                return;
+            dispatcher.Invoke(new Action(() =>
+            {
+                miniature.miniatureViewModel.RateValueText = ratio + "%";
+                miniature.miniatureViewModel.Rate = ratio;
 
-            double rate = 100 * (double)Math.Round((double)lenght / (double)count, 3);
-            miniature.miniatureViewModel.RateValueText = rate.ToString() + "%";
-            miniature.miniatureViewModel.Rate = (int)rate;
-
-            int progress = (count * 100) / totalLength;
-            miniature.miniatureViewModel.Progress = progress;
-            miniature.miniatureViewModel.ProgressValueText = progress.ToString() + "%";
+                miniature.miniatureViewModel.Progress = progress;
+                miniature.miniatureViewModel.ProgressValueText = progress + "%";
+            }));
         }
 
         public StateEnum GetState()

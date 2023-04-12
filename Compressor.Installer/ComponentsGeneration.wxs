@@ -2,62 +2,83 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="INSTALLFOLDER">
-            <Component Id="cmp7497E0B354AEA7F54D987BCDF7301E52" Guid="{3034EA45-77E8-4FDC-A46C-5B552F89BA52}">
+            <Component Id="cmp7497E0B354AEA7F54D987BCDF7301E52" Guid="{7C25CC40-8F50-4D3D-99EE-1469E94243CA}">
                 <File Id="fil553C5E9BD821B2301960E964847F4481" KeyPath="yes" Source="$(var.BasePath)\CommonServiceLocator.dll" />
             </Component>
-            <Component Id="cmpC48259A4C7FECEBF0B96F4FEB546DF2A" Guid="{4D536AE3-B3F7-447C-A230-C2190DE46695}">
+            <Component Id="cmpC48259A4C7FECEBF0B96F4FEB546DF2A" Guid="{A66A3BA3-42A5-4D97-B5AC-D4920C6DBA85}">
                 <File Id="filFF6B8AACD9C4A3F73013F582685B35E3" KeyPath="yes" Source="$(var.BasePath)\Compressor.exe" />
             </Component>
-            <Component Id="cmp8AF2EB393D9D4D92DEE75687D95295DF" Guid="{F0BB5197-3C99-4673-940B-FF77702A2957}">
+            <Component Id="cmp8AF2EB393D9D4D92DEE75687D95295DF" Guid="{205460E3-4067-4985-90BF-DA85223726D9}">
                 <File Id="filB53E20457C000F22D7CB1260F43954CD" KeyPath="yes" Source="$(var.BasePath)\Compressor.exe.config" />
             </Component>
-            <Component Id="cmp5BF8C80D9A3BACF2EF416A91B4F06A4A" Guid="{1F8F1BFF-E889-449B-8DCE-BD1A49F62F9B}">
+            <Component Id="cmp5BF8C80D9A3BACF2EF416A91B4F06A4A" Guid="{5F9CAC84-EED3-485C-8DEC-3D3F027F68C4}">
                 <File Id="fil64563AF315FCAF5E7D154C11667E3EB8" KeyPath="yes" Source="$(var.BasePath)\Compressor.pdb" />
             </Component>
-            <Component Id="cmp0A996586383240FA3E04EF819E036618" Guid="{9C1255D6-C782-420D-BE6F-D8E0DB4E0BFA}">
+            <Component Id="cmp0A996586383240FA3E04EF819E036618" Guid="{67DB9018-3092-40AD-AD1D-6673CCD8C334}">
                 <File Id="filFEFD2783E5DA4CE0FD0CC448B98B8282" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.dll" />
             </Component>
-            <Component Id="cmp17BFF5FB30D3632422DA2006E44AD968" Guid="{125F6E61-41FE-4BAD-B6F1-5D5C8E04F008}">
+            <Component Id="cmp17BFF5FB30D3632422DA2006E44AD968" Guid="{555B175C-651E-41D4-AC96-DDC2ACCB2771}">
                 <File Id="fil9644536B770B8F5B869068B0AA7CED33" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Extras.dll" />
             </Component>
-            <Component Id="cmpA9858AEE074BA5FF4FF0B5CD1F5060D3" Guid="{AE3261CE-C2E7-4FA9-9F6A-2719928186CA}">
+            <Component Id="cmpA9858AEE074BA5FF4FF0B5CD1F5060D3" Guid="{FF39DA9F-0D97-4A2F-9043-C4F793159B42}">
                 <File Id="fil0665D199B25D144507EB7CC43366DA59" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Extras.pdb" />
             </Component>
-            <Component Id="cmp2B5A2FE464CA1F7FF7E66D03CBDEAEC6" Guid="{741377D0-9DD8-41F6-9119-520D91AB02D4}">
+            <Component Id="cmp2B5A2FE464CA1F7FF7E66D03CBDEAEC6" Guid="{FD93EE76-5F67-477D-AC23-1A1FED360CC1}">
                 <File Id="filE29801BA37D9EA3FF2FBD4C27F224FD6" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Extras.xml" />
             </Component>
-            <Component Id="cmpC5323B58D6FE9921DCBD0DA02542A9EA" Guid="{8218300E-199D-4B94-8A16-BEBB33AFD27D}">
+            <Component Id="cmpC5323B58D6FE9921DCBD0DA02542A9EA" Guid="{7563E6DB-1979-489C-8CE9-9117C80EA2CE}">
                 <File Id="filCA26613FF692C3372A3E128988E57B91" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.pdb" />
             </Component>
-            <Component Id="cmpBB590427EC85B15F8307BAB5F2C0D4FD" Guid="{09628CBE-2F0A-484F-847C-288391CEFD39}">
+            <Component Id="cmpBB590427EC85B15F8307BAB5F2C0D4FD" Guid="{1D8CCDEF-C4E8-43E7-93DC-79256D8D0930}">
                 <File Id="filC9FFF83F6E76026272222D6FF39444A2" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Platform.dll" />
             </Component>
-            <Component Id="cmp429BF624042409EF870DB4BAFA8C779F" Guid="{1B75E87D-B5E9-431A-9FFA-B6DAEBDA91B4}">
+            <Component Id="cmp429BF624042409EF870DB4BAFA8C779F" Guid="{3D27AFDB-933E-45CD-A01F-5DEFFB1C4C19}">
                 <File Id="fil725498A756ED54FA1DC84D5734E3AE6D" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Platform.pdb" />
             </Component>
-            <Component Id="cmp0CE728A49B1A18E1D2A82C1FB62839E5" Guid="{A7876443-2D1E-4D3A-8436-AA7995360AB5}">
+            <Component Id="cmp0CE728A49B1A18E1D2A82C1FB62839E5" Guid="{8AED6BB2-87E6-4425-84E5-1FB6699E8473}">
                 <File Id="fil8C07BFCA04BBE43D6943B75B2EBC1866" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.Platform.xml" />
             </Component>
-            <Component Id="cmp0E0A13BC45FC27B4A39F923743C93F33" Guid="{05FCE281-6042-458B-AB2D-EBF1BBCCCFEB}">
+            <Component Id="cmp0E0A13BC45FC27B4A39F923743C93F33" Guid="{8DA23F61-86AD-46EE-9764-95621E0291E3}">
                 <File Id="fil5126DDA9D3089E8C4D8D8DC5E5A709A6" KeyPath="yes" Source="$(var.BasePath)\GalaSoft.MvvmLight.xml" />
             </Component>
-            <Component Id="cmp9E4CFB566189B7299CED135551BDF114" Guid="{8DFD69D0-5926-4033-BA59-B92ECF0CBBB0}">
+            <Component Id="cmp9CA4412DF3EE7D63510829EDAD3326B3" Guid="{3D00DA14-BE51-44E2-8329-D933AEB09E13}">
+                <File Id="fil30736CF261EB75E7FD11CBD31AE7F9C9" KeyPath="yes" Source="$(var.BasePath)\Huff.dll" />
+            </Component>
+            <Component Id="cmpD5A0EEAA24AF2FAF7001532413AA9E4C" Guid="{75385D20-8159-49F8-AAAA-B441A76E63EB}">
+                <File Id="filBE5B931F53D6C1DCBF22D86409518ED2" KeyPath="yes" Source="$(var.BasePath)\Huff.pdb" />
+            </Component>
+            <Component Id="cmp9E4CFB566189B7299CED135551BDF114" Guid="{DA2EB382-DECE-47D9-981F-AF35190C506C}">
                 <File Id="filF6A2AFD1BCE976F033C3DF8E23D021F4" KeyPath="yes" Source="$(var.BasePath)\Interfaces.dll" />
             </Component>
-            <Component Id="cmp071934FA4F66FD271335AC8A4898CE56" Guid="{0E790F1D-15AE-4A22-BC3C-011E05EC68C8}">
+            <Component Id="cmp071934FA4F66FD271335AC8A4898CE56" Guid="{B1964AF2-6698-463B-9E02-78AC699D32F6}">
                 <File Id="filA4FF9D9E258F546EA7F9E0AA32E3EEEA" KeyPath="yes" Source="$(var.BasePath)\Interfaces.pdb" />
             </Component>
-            <Component Id="cmpFB5F7C45D8B28F18CE883FD8064A7B61" Guid="{B3FF71F9-1179-4459-A6D3-49AEE324CA2D}">
+            <Component Id="cmp9D84A40CA6A136C183D85DE6A7A4F84C" Guid="{BCA461DD-AE46-4645-8045-05D314AEC681}">
+                <File Id="filA90259B3BA1BB57F805884F60A777947" KeyPath="yes" Source="$(var.BasePath)\LZW.dll" />
+            </Component>
+            <Component Id="cmp905C4D98924FEACCCA14F86557C74B98" Guid="{350C1C9D-AA11-4FF9-A1AF-F02898009181}">
+                <File Id="filA02D5E90D14944CB93E42724FFC848B0" KeyPath="yes" Source="$(var.BasePath)\LZW.pdb" />
+            </Component>
+            <Component Id="cmp8AC833CFB7DC6722697152FE46DA157A" Guid="{82C30EC0-51FF-4D5F-9FD3-AFDAB43EFC06}">
+                <File Id="filD3CAD095889A5DE7EAAE25C73BC9910A" KeyPath="yes" Source="$(var.BasePath)\Microsoft.Xaml.Behaviors.dll" />
+            </Component>
+            <Component Id="cmpC391F13134AAE84A2F7D6ED96816E8DC" Guid="{A5C57C97-6A5A-4F34-9BF5-4925B270EBFA}">
+                <File Id="filF3DB15E0DC8DFF86397D5835711101EC" KeyPath="yes" Source="$(var.BasePath)\Microsoft.Xaml.Behaviors.pdb" />
+            </Component>
+            <Component Id="cmpEFB6FA4DC538A523D33E7E6BFBF2261E" Guid="{7A9DF672-280F-4C3A-8A9E-2B853DD31434}">
+                <File Id="fil4356793302EC2FD3D7D9387DB9D81C5E" KeyPath="yes" Source="$(var.BasePath)\Microsoft.Xaml.Behaviors.xml" />
+            </Component>
+            <Component Id="cmpFB5F7C45D8B28F18CE883FD8064A7B61" Guid="{EC5480B9-CD21-40B3-8456-F5AED4856E21}">
                 <File Id="filF2AB8D010D91F97C11BC418E359670B7" KeyPath="yes" Source="$(var.BasePath)\RLE.dll" />
             </Component>
-            <Component Id="cmpFFB38FE30B0DB3CB78910E8850E0FFFD" Guid="{1421965D-B730-4064-A6D8-E395B33B7DB1}">
+            <Component Id="cmpFFB38FE30B0DB3CB78910E8850E0FFFD" Guid="{336ADEBE-DE17-4F52-BF65-1489FB4A98D3}">
                 <File Id="fil8479292A9F78B7CB82A3B590A5485986" KeyPath="yes" Source="$(var.BasePath)\RLE.pdb" />
             </Component>
-            <Component Id="cmp017BFB3832A5B110A2B3A350E13F2A5C" Guid="{EDB8418C-1F7E-4BA2-B352-7BE64ED49AE8}">
+            <Component Id="cmp017BFB3832A5B110A2B3A350E13F2A5C" Guid="{BEC9C96F-EF80-4189-92B6-BA4983DF534E}">
                 <File Id="fil17E34524E8398461D615894C92558FE9" KeyPath="yes" Source="$(var.BasePath)\System.Windows.Interactivity.dll" />
             </Component>
             <Directory Id="dirE9205C68F964857267FD3312DBFF9A91" Name="ru">
-                <Component Id="cmp54D2C38F615F36D69092EBFFC2A7BE5A" Guid="{E410AE2F-48C9-4967-899E-406B3867E547}">
+                <Component Id="cmp54D2C38F615F36D69092EBFFC2A7BE5A" Guid="{B694B9D0-8FA5-4F82-BB01-96CD7164C69D}">
                     <File Id="fil3166BF33C0C860B28A1DC22DE3FC653E" KeyPath="yes" Source="$(var.BasePath)\ru\Compressor.resources.dll" />
                 </Component>
             </Directory>
@@ -78,8 +99,15 @@
             <ComponentRef Id="cmp429BF624042409EF870DB4BAFA8C779F" />
             <ComponentRef Id="cmp0CE728A49B1A18E1D2A82C1FB62839E5" />
             <ComponentRef Id="cmp0E0A13BC45FC27B4A39F923743C93F33" />
+            <ComponentRef Id="cmp9CA4412DF3EE7D63510829EDAD3326B3" />
+            <ComponentRef Id="cmpD5A0EEAA24AF2FAF7001532413AA9E4C" />
             <ComponentRef Id="cmp9E4CFB566189B7299CED135551BDF114" />
             <ComponentRef Id="cmp071934FA4F66FD271335AC8A4898CE56" />
+            <ComponentRef Id="cmp9D84A40CA6A136C183D85DE6A7A4F84C" />
+            <ComponentRef Id="cmp905C4D98924FEACCCA14F86557C74B98" />
+            <ComponentRef Id="cmp8AC833CFB7DC6722697152FE46DA157A" />
+            <ComponentRef Id="cmpC391F13134AAE84A2F7D6ED96816E8DC" />
+            <ComponentRef Id="cmpEFB6FA4DC538A523D33E7E6BFBF2261E" />
             <ComponentRef Id="cmpFB5F7C45D8B28F18CE883FD8064A7B61" />
             <ComponentRef Id="cmpFFB38FE30B0DB3CB78910E8850E0FFFD" />
             <ComponentRef Id="cmp017BFB3832A5B110A2B3A350E13F2A5C" />

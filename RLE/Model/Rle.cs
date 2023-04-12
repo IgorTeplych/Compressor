@@ -10,8 +10,8 @@ namespace Comp
 {
     public class Rle
     {
-        Action<int, int, int> progress;
-        public Rle(Action<int, int, int> progress)
+        Action<int, int> progress;
+        public Rle(Action<int, int> progress)
         {
             this.progress = progress;
         }
@@ -23,7 +23,7 @@ namespace Comp
             int totalLength = 0;
             while (count < bytes.Length)
             {
-                encode = new FactorArray<byte>();
+                encode = new FactorArray<byte>(10);
                 countBytes = 0;
                 byte length = 1;
                 while (length < 127 && count < bytes.Length && bytes[count - 1] == bytes[count])
@@ -57,12 +57,22 @@ namespace Comp
 
                 WriteToFile(encode, countBytes, fullPath);
                 totalLength += countBytes;
-                progress.Invoke(count, totalLength, bytes.Length);
+
+                if (count % 1024 == 0)
+                    CalcProgressAndRatio(count, totalLength, bytes.Length);
             }
+            CalcProgressAndRatio(count, totalLength, bytes.Length);
+        }
+
+        void CalcProgressAndRatio(int count, int lenght, int totalLength)
+        {
+            int rate = (100 * lenght) / count;
+            int progr = (count * 100) / totalLength;
+            progress.Invoke(progr, rate);
         }
         public void Decode(byte[] encode, string fullPath)
         {
-            IArray<byte> decode = new FactorArray<byte>();
+            IArray<byte> decode = new FactorArray<byte>(10);
             int decodeLength = 0;
             byte length;
             int totalCount = 0;
@@ -90,8 +100,11 @@ namespace Comp
                     }
                 }
                 WriteToFile(decode, decodeLength, fullPath);
-                progress.Invoke(totalCount, 0, encode.Length);
+
+                if (totalCount % 1024 == 0)
+                    CalcProgressAndRatio(totalCount, 0, encode.Length);
             }
+            CalcProgressAndRatio(totalCount, 0, encode.Length);
         }
         void WriteToFile(IArray<byte> bytes, int len, string path)
         {

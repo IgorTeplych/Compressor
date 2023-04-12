@@ -114,6 +114,15 @@ namespace Compressor.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Drag file here.
+        /// </summary>
+        public static string DragThisFiles {
+            get {
+                return ResourceManager.GetString("DragThisFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Options.
         /// </summary>
         public static string Options {
@@ -128,6 +137,24 @@ namespace Compressor.Resources {
         public static string PathDirectory {
             get {
                 return ResourceManager.GetString("PathDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select an algoritm.
+        /// </summary>
+        public static string SelectAlgo {
+            get {
+                return ResourceManager.GetString("SelectAlgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select an action.
+        /// </summary>
+        public static string SelectCompAction {
+            get {
+                return ResourceManager.GetString("SelectCompAction", resourceCulture);
             }
         }
         

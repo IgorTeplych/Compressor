@@ -3,50 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="" Height="400" Width="470"
+        Title="" Height="400" Width="510"
         Icon="{Binding Source={StaticResource ArhiveSmall}}"
         ResizeMode="NoResize"
         WindowStartupLocation ="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="205"/>
+            <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
-        <Grid>
-            <GroupBox Header="{Binding Source={StaticResource UIStrings}, Path=Options}" Style="{StaticResource GroupBoxStyle}">
+        <Grid Grid.Column="0">
+            <GroupBox Header="{Binding Source={StaticResource UIStrings}, Path=Options}" Style="{StaticResource GroupBoxStyle}" Margin="2,2,2,2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition />
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=Action}" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1"
-                                  Style="{StaticResource ComboBoxStyle}"
-                                  ItemsSource="{Binding Source={StaticResource Actions}}"
-                                  SelectedItem="{Binding SelectedAction, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </Grid>
-                    <Grid Grid.Row="1" Margin="1" VerticalAlignment="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=CompressionAlgorithm}" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1"
-                                  Style="{StaticResource ComboBoxStyle}"
+
+                    <ToolBar Grid.Row="0">
+                        <ComboBox Grid.Column="1" Margin="2"
+                                  Style="{StaticResource ComboBoxStyle}" Width="85"
                                   ItemsSource="{Binding Source={StaticResource ArhAlgo}}"
+                                  ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectAlgo}"
                                   SelectedItem="{Binding SelectedArhAlgo, Mode=TwoWay}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -54,85 +35,81 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                    </Grid>
-                    <Grid Grid.Row="2" HorizontalAlignment="Left">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Row="0" Style="{StaticResource OpenDialogButton}" ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectFiles}"
-                            Command="{Binding OpenFilesCommand}">
-                            <Image Source="{Binding Source={StaticResource Folder}}"/>
-                        </Button>
-                        <Grid  Grid.Row="0" Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=SourceFiles}"/>
-                            <TextBlock  Grid.Row="1" VerticalAlignment="Bottom" Text="{Binding FilesListText}"/>
-                        </Grid>
-                        <Button Grid.Row="1" Style="{StaticResource OpenDialogButton}" ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectDir}"
-                                Command="{Binding OpenDirectoryCommand}">
-                            <Image Source="{Binding Source={StaticResource Folder}}"/>
-                        </Button>
-                        <Grid Grid.Row="1" Grid.Column="2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=PathDirectory}"/>
-                            <TextBlock Grid.Row="1" VerticalAlignment="Bottom" Text="{Binding DirectoryText}"/>
-                        </Grid>
-                    </Grid>
+                        <ComboBox Grid.Column="1" Margin="2"
+                                  Style="{StaticResource ComboBoxStyle}"
+                                  ItemsSource="{Binding Source={StaticResource Actions}}"
+                                  ToolTip="{Binding Source={StaticResource UIStrings}, Path=SelectCompAction}"
+                                  SelectedItem="{Binding SelectedAction, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </ToolBar>
 
+                    <Border Grid.Row="2" Margin="3" 
+                            BorderBrush="Black" 
+                            BorderThickness="1"
+                            Background="LightGray">
+                        <Border Margin="10" 
+                             BorderThickness="1" 
+                             Background="LightGray" 
+                             AllowDrop="True"
+                                BorderBrush="{Binding ColorByDragFiles, Mode=TwoWay}">
+                            <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=DragThisFiles}" 
+                                   Margin="10" 
+                                   VerticalAlignment="Top" 
+                                   HorizontalAlignment="Center"/>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Drop">
+                                    <i:InvokeCommandAction Command="{Binding DropFilesCommand}" PassEventArgsToCommand="True"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="DragEnter">
+                                    <i:InvokeCommandAction Command="{Binding DragEnterFilesCommand}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="DragLeave">
+                                    <i:InvokeCommandAction Command="{Binding DragLeaveFilesCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Border>
+                    </Border>
                 </Grid>
 
             </GroupBox>
         </Grid>
         <Grid Grid.Column="1">
-            <GroupBox Style="{StaticResource GroupBoxStyle}">
-                <GroupBox.Header>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Source={StaticResource UIStrings}, Path=Commands}" VerticalAlignment="Center"/>
-                        <Button Grid.Column="1" Style="{StaticResource OpenDialogButton}"
+            <GroupBox Style="{StaticResource GroupBoxStyle}" Header="{Binding Source={StaticResource UIStrings}, Path=Commands}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ToolBar Grid.Row="0">
+                        <Button Style="{StaticResource OpenDialogButton}"
                                 ToolTip="{Binding Source={StaticResource UIStrings}, Path=Start}"
                                 Command="{Binding StartCommand}">
                             <Image Source="{Binding Source={StaticResource Play}}"/>
                         </Button>
-                        <Button Grid.Column="2" Style="{StaticResource OpenDialogButton}"
+                        <Button Style="{StaticResource OpenDialogButton}"
                                 ToolTip="{Binding Source={StaticResource UIStrings}, Path=Clear}"
                                 Command="{Binding ClearCommand}">
                             <Image Source="{Binding Source={StaticResource Clear}}"/>
                         </Button>
-                    </Grid>
-                    
-                </GroupBox.Header>
-                <ListBox x:Name="Commands" Grid.Column="0" Margin="2"
-                 ItemsSource="{Binding CommandsSet}"
-                 SelectedIndex="{Binding SelectCommand}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Height="auto">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                    </Grid.ColumnDefinitions>
-                                    <UserControl Grid.Column="0" Content="{Binding Miniature}"/>
-                                </Grid>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ToolBar>
+
+                    <ListBox x:Name="Commands" Grid.Row="1" Margin="2"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ItemsSource="{Binding CommandsSet}"
+                             SelectedIndex="{Binding SelectCommand}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <UserControl Content="{Binding Miniature}" Width="205"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </GroupBox>
         </Grid>
     </Grid>

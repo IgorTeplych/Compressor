@@ -135,11 +135,20 @@
   <data name="CompressionAlgorithm" xml:space="preserve">
     <value>Compression algorithm</value>
   </data>
+  <data name="DragThisFiles" xml:space="preserve">
+    <value>Drag file here</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
   <data name="PathDirectory" xml:space="preserve">
     <value>Path directory:</value>
+  </data>
+  <data name="SelectAlgo" xml:space="preserve">
+    <value>Select an algoritm</value>
+  </data>
+  <data name="SelectCompAction" xml:space="preserve">
+    <value>Select an action</value>
   </data>
   <data name="SelectDir" xml:space="preserve">
     <value>Select directory</value>

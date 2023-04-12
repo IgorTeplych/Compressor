@@ -4,19 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0842583A-AB34-4BB4-8236-4B10402BECDF}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Compressor</RootNamespace>
-    <AssemblyName>Compressor</AssemblyName>
+    <ProjectGuid>{F5637695-C5E4-4756-90BA-67AC8AD2E97C}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Huff</RootNamespace>
+    <AssemblyName>Huff</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,16 +24,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>ArhiveBig.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -50,12 +44,8 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -73,41 +63,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Resources\Lang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Lang.ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.ru.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\Converters\EnumDescriptionConverter.cs" />
-    <Compile Include="ViewModel\Enums\OperationsEnum.cs" />
-    <Compile Include="ViewModel\Enums\TypeArhAlgoEnum.cs" />
-    <Compile Include="ViewModel\LocDescriptionAttribute.cs" />
+    <Compile Include="HuffmanAlgo.cs" />
+    <Compile Include="Model\Algoritms\AlgoHuffman.cs" />
+    <Compile Include="Model\Algoritms\Alphabet.cs" />
+    <Compile Include="Model\Algoritms\Compress.cs" />
+    <Compile Include="Model\Algoritms\Containers\BitsContainer.cs" />
+    <Compile Include="Model\Algoritms\Node.cs" />
+    <Compile Include="Model\BasicStructures\Node.cs" />
+    <Compile Include="Model\BasicStructures\PriorityQueue.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Page Include="Dictionaries\Style\UIStile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="View\Miniature.xaml.cs">
+      <DependentUpon>Miniature.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -128,15 +95,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang.ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Files\License.rtf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -144,45 +102,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Page Include="View\Miniature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\UserControls\" />
-    <Folder Include="View\UserControls\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Huff\Huff.csproj">
-      <Project>{F5637695-C5E4-4756-90BA-67AC8AD2E97C}</Project>
-      <Name>Huff</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{22ed972d-d4dd-4096-887b-15d56ebf304b}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LZW\LZW.csproj">
-      <Project>{8036e883-fbeb-4110-930d-cf76743d8285}</Project>
-      <Name>LZW</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RLE\RLE.csproj">
-      <Project>{d0b00f45-51f6-4e30-927b-48c98d556f7f}</Project>
-      <Name>RLE</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Folder.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\ArhiveSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ArhiveBig.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Clear.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Play.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,5 +12,9 @@ namespace Compressor.ViewModel.Enums
     {
         [Description("RLE")]
         rle = 0,
+        [Description("Huffman")]
+        hufmann = 1,
+        [Description("LZW")]
+        lzw = 2
     }
 }

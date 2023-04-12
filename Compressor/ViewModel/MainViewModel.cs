@@ -1,13 +1,17 @@
 using Compressor.ViewModel.Enums;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Huff;
 using Interfaces;
+using LZW;
 using Microsoft.Win32;
 using RLE;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace Compressor.ViewModel
 {
@@ -16,31 +20,21 @@ namespace Compressor.ViewModel
         public MainViewModel()
         {
             CommandsSet = new ObservableCollection<IShow>();
-            OpenFilesCommand = new RelayCommand(() => OpenFilesMethod());
-            OpenDirectoryCommand = new RelayCommand(() => OpenDirectoryMethod());
             StartCommand = new RelayCommand(() => StartMethod());
             ClearCommand = new RelayCommand(() => ClearMethod());
-            FilesListText = "   ...";
-            DirectoryText = "   ...";
+            DragEnterFilesCommand = new RelayCommand(() => DragEnterFilesMethod());
+            DragLeaveFilesCommand = new RelayCommand(() => DragLeaveFilesMethod());
+            DropFilesCommand = new RelayCommand<object>((obj) => DropFilesMethod(obj));
         }
-        string filesListText;
-        public string FilesListText
+
+        string _ColorByDragFiles;
+        public string ColorByDragFiles
         {
-            get { return filesListText; }
+            get { return _ColorByDragFiles; }
             set
             {
-                filesListText = value;
-                RaisePropertyChanged(() => FilesListText);
-            }
-        }
-        string directoryText;
-        public string DirectoryText
-        {
-            get { return directoryText; }
-            set
-            {
-                directoryText = value;
-                RaisePropertyChanged(() => DirectoryText);
+                _ColorByDragFiles = value;
+                RaisePropertyChanged(() => ColorByDragFiles);
             }
         }
 
@@ -65,65 +59,70 @@ namespace Compressor.ViewModel
                 RaisePropertyChanged(() => SelectedAction);
             }
         }
-
+        public RelayCommand<object> DropFilesCommand { get; set; }
         public RelayCommand StartCommand { get; set; }
-        public RelayCommand OpenFilesCommand { get; set; }
-        public RelayCommand OpenDirectoryCommand { get; set; }
         public RelayCommand ClearCommand { get; set; }
+        public RelayCommand DragEnterFilesCommand { get; set; }
+        public RelayCommand DragLeaveFilesCommand { get; set; }
         public ObservableCollection<IShow> CommandsSet { get; set; }
 
-        string[] selectFiles;
-        void OpenFilesMethod()
-        {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            openFileDialog.InitialDirectory = @"C:\";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                selectFiles = openFileDialog.FileNames;
-                FilesListText = new FileInfo(selectFiles[0]).DirectoryName;
-                foreach (var item in selectFiles)
-                {
-                    IShow algo = null;
-                    if (SelectedArhAlgo == TypeArhAlgoEnum.rle)
-                        algo = new AlgoritmRLE();
-
-                    ((IPath)algo).Path(new FileInfo(item));
-                    CommandsSet.Add(algo);
-                }
-            }
-        }
-        DirectoryInfo selectDirectory;
-        void OpenDirectoryMethod()
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                selectDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
-                DirectoryText = selectDirectory.FullName;
-            }
-        } 
         void StartMethod()
         {
             foreach (var item in CommandsSet)
-            {
-                if (SelectedAction == OperationsEnum.compression)
-                    ((IOperation)item).Operation(Interfaces.Enums.OperationEnum.Encode);
-
-                if(SelectedAction == OperationsEnum.unpacking)
-                    ((IOperation)item).Operation(Interfaces.Enums.OperationEnum.Decode);
-
-                ((IPath)item).Path(selectDirectory);
                 ((ICommand)item).Execute();
-            }
         }
         void ClearMethod()
         {
             var toClear = CommandsSet.Where((p => ((IState)p).GetState() != Interfaces.Enums.StateEnum.IsRun)).ToList();
-            foreach(var item in toClear)
+            foreach (var item in toClear)
             {
                 CommandsSet.Remove(item);
             }
+        }
+        void DragEnterFilesMethod()
+        {
+            ColorByDragFiles = Brushes.Gray.ToString();
+        }
+        void DragLeaveFilesMethod()
+        {
+            ColorByDragFiles = Brushes.LightGray.ToString();
+        }
+        void DropFilesMethod(object obj)
+        {
+            var e = obj as System.Windows.DragEventArgs;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (var item in files)
+                {
+                    var fi = new FileInfo(item);
+                    if (!fi.Exists)
+                        return;
+
+                    IShow algo = null;
+                    if (SelectedArhAlgo == TypeArhAlgoEnum.rle)
+                        algo = new AlgoritmRLE();
+
+                    if (SelectedArhAlgo == TypeArhAlgoEnum.hufmann)
+                        algo = new HuffmanAlgo();
+
+                    if (SelectedArhAlgo == TypeArhAlgoEnum.lzw)
+                        algo = new AlgoritmLZW();
+
+                    if (SelectedAction == OperationsEnum.compression)
+                        ((IOperation)algo).Operation(Interfaces.Enums.OperationEnum.Encode);
+
+                    if (SelectedAction == OperationsEnum.unpacking)
+                        ((IOperation)algo).Operation(Interfaces.Enums.OperationEnum.Decode);
+
+                    ((IPath)algo).Path(fi);
+                    ((IPath)algo).Path(fi.Directory);
+
+                    CommandsSet.Add(algo);
+                }
+            }
+            ColorByDragFiles = Brushes.LightGray.ToString();
         }
     }
 }

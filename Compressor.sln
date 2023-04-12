@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RLE", "RLE\RLE.csproj", "{D
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Compressor.Installer", "Compressor.Installer\Compressor.Installer.wixproj", "{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huff", "Huff\Huff.csproj", "{F5637695-C5E4-4756-90BA-67AC8AD2E97C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZW", "LZW\LZW.csproj", "{8036E883-FBEB-4110-930D-CF76743D8285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,22 @@ Global
 		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|Any CPU.Build.0 = Release|x86
 		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|x86.ActiveCfg = Release|x86
 		{0B72E6FF-A23F-4D4D-B1B5-BED1E6A4409C}.Release|x86.Build.0 = Release|x86
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5637695-C5E4-4756-90BA-67AC8AD2E97C}.Release|x86.Build.0 = Release|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Debug|x86.Build.0 = Debug|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Release|x86.ActiveCfg = Release|Any CPU
+		{8036E883-FBEB-4110-930D-CF76743D8285}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
