@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="" Height="400" Width="510"
+        Title="" Height="450" Width="510"
         Icon="{Binding Source={StaticResource ArhiveSmall}}"
         ResizeMode="NoResize"
         WindowStartupLocation ="CenterScreen">
